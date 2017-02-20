@@ -1,0 +1,15 @@
+{
+    "name": "ufon/rollingscopes.api",
+    "description": "back-end for rollingscopes test project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ufon",
+            "email": "ufon.exe@yandex.ru"
+        }
+    ],
+    "require": {
+        "slim/slim": "^3.0",
+        "palanik/corsslim": "dev-slim3"
+    }
+}
