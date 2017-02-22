@@ -8,7 +8,7 @@ slimApiYandex uses a bit of open source projects to work properly:
 * [Slim Framework](https://www.slimframework.com/) - PHP micro framework
 * [guzzle](http://docs.guzzleph.org/en/latest/) - awesome PHP HTTP client
 
-And of course slimApiYandex itself is open source with a [public repository][dill]
+And of course slimApiYandex itself is open source with a [public repository](https://github.com/ufon/slimApiYandex)
  on GitHub.
 
 ### Installation
