@@ -13,7 +13,7 @@ And of course slimApiYandex itself is open source with a [public repository][dil
 
 ### Installation
 
-slimApiYandex requires [PHP](https://nodejs.org/) v5.6+ and [Composer](https://getcomposer.org/) to run.
+slimApiYandex requires [PHP](http://php.net/downloads.php) v5.6+ and [Composer](https://getcomposer.org/) to run.
 
 Install the dependencies by Composer.
 
