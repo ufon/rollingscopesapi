@@ -4,7 +4,15 @@ require 'yandex/api.php';
 $app->get('/categories', function() {
 
     $client = new \GuzzleHttp\Client(['verify' => false ]);
-    $res = $client->request('GET', 'https://api.github.com/repos/guzzle/guzzle');
+
+    $res = $client->request('GET', 'https://api.content.market.yandex.ru/v1/category.json', [
+        'headers' => [
+            'Host' => 'api.content.market.yandex.ru',
+            'Accept'     => '*/*',
+            'Authorization'      => 'rh46struRIZ1n3meDsCEOdztt2I9z5'
+        ]
+    ]);
+
     echo $res->getBody();
 
 });
