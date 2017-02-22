@@ -2,7 +2,8 @@
 
 function yaApi($type, $id, $query, $format = 'json', $token = "rh46struRIZ1n3meDsCEOdztt2I9z5" , $params = "?geo_id=153"){
     
-     
+    $client = new \GuzzleHttp\Client(['verify' => false ]);
+
     if (isset($type, $query, $id, $params)){
 
         $url = "https://api.content.market.yandex.ru/v1/{$type}/{$id}/{$query}.{$format}{$params}";
@@ -21,32 +22,19 @@ function yaApi($type, $id, $query, $format = 'json', $token = "rh46struRIZ1n3meD
 
     }
 
-    echo $url;
+    //echo $url;
 
-    $headers = array(
-    "Host: api.content.market.yandex.ru",
-    "Accept: */*",
-    "Authorization: {$token}"
-    );
-
-    $ch = curl_init();
-
-    curl_setopt($ch, CURLOPT_URL, $url); 
-
-    //return the transfer as a string 
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-
-    //set header with token 
-    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-
-    // close curl resource to free up system resources 
-    $response = curl_exec($ch);
-
-    curl_close($ch);  
+    $res = $client->request('GET', $url, [
+        'headers' => [
+            'Host' => 'api.content.market.yandex.ru',
+            'Accept'     => '*/*',
+            'Authorization'      => $token
+        ]
+    ]);
 
     //exit ($response);
     
-    return $response;
+    return json_decode($res->getBody());
 
 }
 

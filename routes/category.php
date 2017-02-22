@@ -3,17 +3,11 @@ require 'yandex/api.php';
 
 $app->get('/categories', function() {
 
-    $client = new \GuzzleHttp\Client(['verify' => false ]);
+    $data = yaApi('category');
 
-    $res = $client->request('GET', 'https://api.content.market.yandex.ru/v1/category.json', [
-        'headers' => [
-            'Host' => 'api.content.market.yandex.ru',
-            'Accept'     => '*/*',
-            'Authorization'      => 'rh46struRIZ1n3meDsCEOdztt2I9z5'
-        ]
-    ]);
-
-    echo $res->getBody();
+    return $response
+        ->withHeader('Content-type', 'application/json')
+        ->withJson($data);
 
 });
 
