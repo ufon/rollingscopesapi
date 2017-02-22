@@ -1,13 +1,11 @@
 <?php
 require 'yandex/api.php';
 
-$app->get('/categories', function($request, $response, $args) {
+$app->get('/categories', function() {
 
-    $data = yaApi("category", 1234, "models");
-
-    return $response
-        ->withHeader('Content-type', 'application/json')
-        ->withJson($data);
+    $client = new \GuzzleHttp\Client(['verify' => false ]);
+    $res = $client->request('GET', 'https://api.github.com/repos/guzzle/guzzle');
+    echo $res->getBody();
 
 });
 
