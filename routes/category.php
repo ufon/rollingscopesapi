@@ -1,9 +1,11 @@
 <?php
 require 'yandex/api.php';
 
-$app->get('/categories', function() {
+$app->get('/categories', function($request, $response, $args) {
 
-    $data = yaApi('category');
+    $data = yaApi([
+        'type' => 'category'
+        ]);
 
     return $response
         ->withHeader('Content-type', 'application/json')
@@ -11,24 +13,26 @@ $app->get('/categories', function() {
 
 });
 
-$app->get('/category/{id}/[{type}]', function($request, $response, $args) {
+$app->get('/category/{id}/[{query}]', function($request, $response, $args) {
 
-    $id = (int)$args['id'];
+    $id = array_key_exists('id', $args) ? (int)$args['id'] : null;
 
-    $type = $args['type'];
+    $query = array_key_exists('query', $args) ? $args['query'] : null;
 
-    switch ($type) {
+    $params = $request->getQueryParams() ?: [];
+
+    switch ($query) {
         case 'filters':
-            $data = [$id, 'filters'];
+            $data = yaApi(['type' => 'category', 'id' => $id, 'query' => 'filters', 'params' => $params]);
             break;
         case 'models':
-            $data = [$id, 'models'];
+            $data = yaApi(['type' => 'category', 'id' => $id, 'query' => 'models', 'params' => $params]);
             break;
         case 'children':
-            $data = [$id, 'children'];
+            $data = yaApi(['type' => 'category', 'id' => $id, 'query' => 'children', 'params' => $params]);
             break;
         default:
-            $data = [$id, 'info'];
+            $data = yaApi(['type' => 'category', 'id' => $id, 'params' => $params]);
             break;
     }
 
